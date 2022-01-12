@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 // import the required libraries
-import { useQuery, gql } from "@apollo/client";
+import { useQuery, gql } from '@apollo/client';
 
-import NoteFeed from "../components/NoteFeed";
+import NoteFeed from '../components/NoteFeed';
 
 // our GraphQL query, stored as a variable
 const GET_NOTES = gql`
@@ -23,7 +23,7 @@ const GET_NOTES = gql`
 
 const Home = () => {
   // query hook
-  const { data, loading, error, fetchMore } = useQuery(GET_NOTES);
+  const { data, loading, error } = useQuery(GET_NOTES);
   // if the data is loading, display a loading message
   if (loading) return <p>Loading...</p>;
   // if there is an error fetching the data, display an error message

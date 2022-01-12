@@ -3,3 +3,5 @@ core
 coverage
 node_modules
 test
+src/img
+**/index.html

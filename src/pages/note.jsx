@@ -1,5 +1,6 @@
-import React from "react";
-import { useQuery, gql } from "@apollo/client";
+import React from 'react';
+import { useQuery, gql } from '@apollo/client';
+import PropTypes from 'prop-types';
 
 // the note query, which accepts an ID variable
 const GET_NOTE = gql`
@@ -18,9 +19,9 @@ const GET_NOTE = gql`
   }
 `;
 
-const NotePage = (props) => {
+const NotePage = ({ match }) => {
   // store the id found in the url as a variable
-  const id = props.match.params.id;
+  const { id } = match.params;
   // query hook, passing the id value as a variable
   const { loading, error, data } = useQuery(GET_NOTE, { variables: { id } });
   // if the data is loading, display a loading message
@@ -30,10 +31,14 @@ const NotePage = (props) => {
 
   return (
     <div>
-      <p>ID: {props.match.params.id}</p>
+      <p>ID: {id}</p>
       <div>{data.note}</div>
     </div>
   );
+};
+
+NotePage.propTypes = {
+  match: PropTypes.object.isRequired,
 };
 
 export default NotePage;

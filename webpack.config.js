@@ -1,15 +1,16 @@
-const path = require("path");
-const HtmlWebPackPlugin = require("html-webpack-plugin");
-const webpack = require("webpack");
+const path = require('path');
+const HtmlWebPackPlugin = require('html-webpack-plugin');
 
 module.exports = (env) => {
+  const isProduction = env === 'production';
+
   return {
-    entry: path.join(__dirname, "src", "index.js"),
-    mode: process.env.NODE_ENV || "development",
+    entry: path.join(__dirname, 'src', 'index.js'),
+    mode: process.env.NODE_ENV || 'development',
     output: {
-      path: path.join(__dirname, "dist"),
-      publicPath: "/",
-      filename: "bundle.js",
+      path: path.join(__dirname, 'dist'),
+      publicPath: '/',
+      filename: 'bundle.js',
     },
     module: {
       rules: [
@@ -17,31 +18,32 @@ module.exports = (env) => {
           test: /\.(js|jsx)$/,
           exclude: /node_modules/,
           use: {
-            loader: "babel-loader",
+            loader: 'babel-loader',
           },
         },
         {
           test: /\.css$/,
-          use: ["style-loader", "css-loader"],
+          use: ['style-loader', 'css-loader'],
         },
         {
           test: /\.(jpg|jpeg|png|gif|mp3|svg)$/,
-          use: ["file-loader"],
+          use: ['file-loader'],
         },
       ],
     },
     // we can import anything from the src folder in relative paths rather than the absolute ones,
     // same goes for node_modules as well.
     resolve: {
-      modules: [path.resolve(__dirname, "src"), "node_modules"],
+      modules: [path.resolve(__dirname, 'src'), 'node_modules'],
     },
     devServer: {
       historyApiFallback: true,
     },
     plugins: [
       new HtmlWebPackPlugin({
-        template: path.join(__dirname, "src", "index.html"),
+        template: path.join(__dirname, 'src', 'index.html'),
       }),
     ],
+    devtool: isProduction ? 'source-map' : 'inline-source-map',
   };
 };

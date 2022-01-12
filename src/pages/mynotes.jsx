@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useEffect } from 'react';
 
 const MyNotes = () => {
   useEffect(() => {
     // update the document title
-    document.title = "My Notes — Notedly";
+    document.title = 'My Notes — Notedly';
   });
 
   return (
