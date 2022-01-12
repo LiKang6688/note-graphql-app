@@ -5,7 +5,7 @@ module.exports = (env) => {
   const isProduction = env === 'production';
 
   return {
-    entry: path.join(__dirname, 'src', 'index.js'),
+    entry: path.join(__dirname, 'src', 'index.jsx'),
     mode: process.env.NODE_ENV || 'development',
     output: {
       path: path.join(__dirname, 'dist'),
@@ -35,6 +35,7 @@ module.exports = (env) => {
     // same goes for node_modules as well.
     resolve: {
       modules: [path.resolve(__dirname, 'src'), 'node_modules'],
+      extensions: ['.jsx', '.js'],
     },
     devServer: {
       historyApiFallback: true,
